@@ -3,6 +3,8 @@ const Tour = require('../models/tourModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+// eslint-disable-next-line no-unused-vars
+const { populate } = require('../models/tourModel');
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
@@ -31,7 +33,7 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
 });
 
 exports.getTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findById(req.params.id);
+  const tour = await Tour.findById(req.params.id).populate('reviews');
   //findOne(req.params.id)
 
   if (!tour) {

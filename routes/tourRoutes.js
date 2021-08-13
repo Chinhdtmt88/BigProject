@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 const tourController = require('../controllers/tourController');
-
+const reviewController = require('../controllers/reviewController');
 //router.param('id', tourController.checkID);
 //Create a checkBody middleware
 //Check if body contains the name and price property
@@ -32,4 +32,15 @@ router
     tourController.deleteTour
   );
 
+//POST /tour/234fads/reviews
+//GET /tour/234dfads/reviews
+//GET /tour/234fads/reviews/948dfd
+
+router
+  .route('/:tourId/reviews')
+  .post(
+    authController.protect,
+    authController.restrictTo('user'),
+    reviewController.createReview
+  );
 module.exports = router;
