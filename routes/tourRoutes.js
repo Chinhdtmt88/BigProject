@@ -4,12 +4,18 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 const tourController = require('../controllers/tourController');
-const reviewController = require('../controllers/reviewController');
+const reviewRouter = require('./reviewRoutes');
+
 //router.param('id', tourController.checkID);
 //Create a checkBody middleware
 //Check if body contains the name and price property
 //If not, send back 400 (bad request)
 //Add it to the post handler stack
+
+//POST /tour/234fads/reviews
+//GET /tour/234dfads/reviews
+
+router.use('/:tourId/reviews', reviewRouter);
 
 router
   .route('/top-5-cheap')
@@ -32,15 +38,4 @@ router
     tourController.deleteTour
   );
 
-//POST /tour/234fads/reviews
-//GET /tour/234dfads/reviews
-//GET /tour/234fads/reviews/948dfd
-
-router
-  .route('/:tourId/reviews')
-  .post(
-    authController.protect,
-    authController.restrictTo('user'),
-    reviewController.createReview
-  );
 module.exports = router;
