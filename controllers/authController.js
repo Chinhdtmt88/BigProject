@@ -98,7 +98,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-//phan quyen han che xoa Tours
+//phan quyen han che xoa Tours, User, Review
 exports.restrictTo =
   (...roles) =>
   (req, res, next) => {
