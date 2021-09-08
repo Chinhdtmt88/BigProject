@@ -67,6 +67,7 @@ const tourSchema = new mongoose.Schema(
       trim: true,
     },
     images: [String],
+    imageCover: [String],
     createAt: {
       type: Date,
       default: Date.now(),
