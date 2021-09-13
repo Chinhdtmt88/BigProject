@@ -1,9 +1,9 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable  */
 /* eslint-disable no-unused-vars */
 const express = require('express');
 
-const authController = require('../controllers/authController');
-const reviewController = require('../controllers/reviewController');
+const authController = require('../controllers/authController.js');
+const reviewController = require('../controllers/reviewController.js');
 
 const router = express.Router({ mergeParams: true });
 

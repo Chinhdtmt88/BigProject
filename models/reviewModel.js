@@ -1,9 +1,8 @@
-/* eslint-disable prettier/prettier */
-// eslint-disable-next-line prettier/prettier
-// review / rating/ creatAt/ ref to tour / ref to user
+/* eslint-disable  */
+
 const mongoose = require('mongoose');
 
-const Tour = require('./tourModel');
+const Tour = require('./tourModel.js');
 
 const reviewSchema = new mongoose.Schema(
   {

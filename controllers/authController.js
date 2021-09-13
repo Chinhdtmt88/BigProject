@@ -1,11 +1,11 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable */
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
-const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
-const sendEmail = require('../utils/email');
+const User = require('../models/userModel.js');
+const catchAsync = require('../utils/catchAsync.js');
+const AppError = require('../utils/appError.js');
+const sendEmail = require('../utils/email.js');
 
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {

@@ -1,7 +1,7 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable */
 const express = require('express');
-const viewsController = require('../controllers/viewsController');
-const authController = require('../controllers/authController');
+const viewsController = require('../controllers/viewsController.js');
+const authController = require('../controllers/authController.js');
 
 const router = express.Router();
 

@@ -1,5 +1,5 @@
-/* eslint-disable prettier/prettier */
-const AppError = require('../utils/appError');
+/* eslint-disable  */
+const AppError = require('../utils/appError.js');
 
 const handleCastErrorDB = (err) => {
   const message = `Invalid ${err.path}:${err.value}.`;
@@ -15,6 +15,7 @@ const handleDuplicateFieldsDB = (err) => {
 };
 
 const handleValidationErrorDB = (err) => {
+  // eslint-disable-next-line no-unused-vars
   const errors = Object.values(err.errors).map((el) => el.message);
 
   const message = `Invalid input data.`;

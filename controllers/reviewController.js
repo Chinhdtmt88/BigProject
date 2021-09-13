@@ -1,7 +1,7 @@
-/* eslint-disable prettier/prettier */
-const Review = require('../models/reviewModel');
+/* eslint-disable  */
+const Review = require('../models/reviewModel.js');
 //const catchAsync = require('../utils/catchAsync');
-const factory = require('./handlerFactory');
+const factory = require('./handlerFactory.js');
 
 // exports.getAllReivews = catchAsync(async (req, res, next) => {
 //   let filter = {};

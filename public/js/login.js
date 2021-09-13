@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-const axios = require('axios').default;
+/* eslint-disable */
 
 const login = async (email, password) => {
   console.log(email, password);
@@ -14,9 +13,9 @@ const login = async (email, password) => {
         password,
       },
     });
-    console.log('res=> ', res);
+    console.log(res);
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
   }
 };
 
@@ -27,7 +26,5 @@ document.querySelector('.form').addEventListener('submit', (e) => {
   const email = document.getElementById('email').value;
   // eslint-disable-next-line no-undef
   const password = document.getElementById('password').value;
-  login(email, password).then((result) => {
-    console.log('result=> ', result);
-  });
+  login(email, password);
 });

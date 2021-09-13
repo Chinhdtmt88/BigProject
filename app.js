@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable  */
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
@@ -9,12 +9,12 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 
-const AppError = require('./utils/appError');
-const globalErrorHandler = require('./controllers/errorController');
-const tourRouter = require('./routes/tourRoutes');
-const userRouter = require('./routes/userRoutes');
-const reviewRouter = require('./routes/reviewRoutes');
-const viewRouter = require('./routes/viewRoutes');
+const AppError = require('./utils/appError.js');
+const globalErrorHandler = require('./controllers/errorController.js');
+const tourRouter = require('./routes/tourRoutes.js');
+const userRouter = require('./routes/userRoutes.js');
+const reviewRouter = require('./routes/reviewRoutes.js');
+const viewRouter = require('./routes/viewRoutes.js');
 
 const app = express();
 
@@ -26,7 +26,39 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", 'data:', 'blob:'],
+
+      baseUri: ["'self'"],
+
+      fontSrc: ["'self'", 'https:', 'data:'],
+
+      scriptSrc: ["'self'", 'https://*.cloudflare.com'],
+
+      scriptSrc: ["'self'", 'https://*.stripe.com'],
+
+      scriptSrc: ["'self'", 'http:', 'https://*.mapbox.com', 'data:'],
+
+      frameSrc: ["'self'", 'https://*.stripe.com'],
+
+      objectSrc: ["'none'"],
+
+      styleSrc: ["'self'", 'https:', 'unsafe-inline'],
+
+      workerSrc: ["'self'", 'data:', 'blob:'],
+
+      childSrc: ["'self'", 'blob:'],
+
+      imgSrc: ["'self'", 'data:', 'blob:'],
+
+      connectSrc: ["'self'", 'blob:', 'https://*.mapbox.com'],
+
+      upgradeInsecureRequests: [],
+    },
+  })
+);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -62,14 +94,6 @@ app.use(
     ],
   })
 );
-//10/9
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     'Content-Security-Policy',
-//     "script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js;"
-//   );
-//   next();
-// });
 
 app.use(express.static(`${__dirname}/public`));
 //Test middleware

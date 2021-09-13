@@ -1,10 +1,10 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable  */
 const express = require('express');
 
 const router = express.Router();
-const authController = require('../controllers/authController');
-const tourController = require('../controllers/tourController');
-const reviewRouter = require('./reviewRoutes');
+const authController = require('../controllers/authController.js');
+const tourController = require('../controllers/tourController.js');
+const reviewRouter = require('./reviewRoutes.js');
 
 //router.param('id', tourController.checkID);
 //Create a checkBody middleware
