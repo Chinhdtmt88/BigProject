@@ -18,7 +18,7 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
-    httpOnly: true,
+    httpOnly: true, //cookie chỉ được thao tác bởi server mà không bị thao tác bởi các script phía client
   };
 
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
@@ -105,6 +105,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   //Grant access to protected route
   req.user = currentUser;
+  res.locals.user = currentUser;
   next();
 });
 
