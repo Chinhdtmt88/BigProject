@@ -35,8 +35,6 @@ app.use(
 
       fontSrc: ["'self'", 'https:', 'data:'],
 
-      scriptSrc: ["'self'", 'https://*.cloudflare.com'],
-
       scriptSrc: ["'self'", 'https://*.stripe.com'],
 
       scriptSrc: ["'self'", 'http:', 'https://*.mapbox.com', 'data:'],
