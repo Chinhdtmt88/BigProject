@@ -32,6 +32,7 @@ export const logout = async () => {
     });
 
     if ((res.data.status = 'success')) location.reload(true);
+    //location.assign('/');
     // location.replace('https://www.w3schools.com');
   } catch (err) {
     showAlert('error', 'Error logging out! try again');
