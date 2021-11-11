@@ -46,7 +46,7 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
-    .toFile(`public/img/users/${req.file.filename}`);
+    .toFile(`../Front_end_ReactJs/my-app/public/users/${req.file.filename}`);
 
   next();
 });

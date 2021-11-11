@@ -8,22 +8,26 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+var cors = require('cors');
 
 const AppError = require('./utils/appError.js');
 const globalErrorHandler = require('./controllers/errorController.js');
 const tourRouter = require('./routes/tourRoutes.js');
 const userRouter = require('./routes/userRoutes.js');
 const reviewRouter = require('./routes/reviewRoutes.js');
-const viewRouter = require('./routes/viewRoutes.js');
+const { dirname } = require('path');
 
 const app = express();
 
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
+app.use(cors());
+
+// app.set('view engine', 'handlebars');
+// app.set('views', path.join(__dirname, 'views'));
 
 //1)MIDDLEWARES
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
+console.log(dirname);
 
 // Set security HTTP headers
 app.use(
@@ -94,7 +98,7 @@ app.use(
   })
 );
 
-app.use(express.static(`${__dirname}/public`));
+// app.use(express.static(path.join(__dirname, '../Front_end_ReactJs/my-app')));
 //Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
@@ -103,10 +107,11 @@ app.use((req, res, next) => {
 });
 
 //3) ROUTES
-app.use('/', viewRouter);
+
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });

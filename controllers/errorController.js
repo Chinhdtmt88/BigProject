@@ -40,10 +40,11 @@ const sendErrorDev = (err, req, res) => {
   }
   //B.Renderd website
   //console.error('ERROR ', err);
-  return res.status(err.statusCode).render('error', {
-    title: 'something went wrong!',
-    msg: err.message,
-  });
+  return res.status(err.statusCode);
+  // .send('error', {
+  //   title: 'something went wrong!',
+  //   msg: err.message,
+  // });
 };
 
 const sendErrorProd = (err, req, res) => {
@@ -70,19 +71,21 @@ const sendErrorProd = (err, req, res) => {
   // B) RENDER WEBSITE
   //A) Operational, trusted error: send message to client
   if (err.isOperatiinal) {
-    return res.status(err.statusCode).render('error', {
-      title: 'Something went wrong!',
-      msg: err.message,
-    });
+    return res.status(err.statusCode);
+    // .send('error', {
+    //   title: 'Something went wrong!',
+    //   msg: err.message,
+    // });
   }
   // B.Programming or orther unknow Error: don't leak error detail
   // 1) Log error
   console.error('ERROR', err);
   // 2) Send generic message
-  return res.status(err.statusCode).render('error', {
-    title: 'Something went wrong!',
-    msg: 'Please try again later',
-  });
+  return res.status(err.statusCode);
+  // .send('error', {
+  //   title: 'Something went wrong!',
+  //   msg: 'Please try again later',
+  // });
 };
 
 module.exports = (err, req, res, next) => {
